@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="top">
+        <p-card>
+            <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
+            <h1>Finalize seu Pedido</h1>
+            <p>Preencha seus dados para finalizar o pedido:</p>
+        </p-card>
+    </div>
+    <div class="bottom">
+        <p-card class="left">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="bottom">
+                <span class="p-label">
+                    <h4>Seu Nome</h4>
+                    <input formControlName="nome" type="text" id="nome" pInputText placeholder="Seu Nome">
+                </span>
+                <span class="p-label">
+                    <h4>Seu Email</h4>
+                    <input formControlName="email" type="email" id="email" pInputText placeholder="Seu Email">
+                </span>
+                <span class="p-label">
+                    <h4>Data de Nascimento</h4>
+                    <input formControlName="nascimento" type="date" id="nascimento" pInputText>
+                </span>
+                <span class="p-label">
+                    <h4>CPF</h4>
+                    <p-inputMask mask="999.999.999-99" formControlName="cpf" id="cpf" placeholder="CPF"></p-inputMask>
+                </span>
+                <span class="p-label">
+                    <h4>Seu Telefone</h4>
+                    <p-inputMask mask="(99) 99999-9999" formControlName="telefone" id="telefone" placeholder="Telefone">
+                    </p-inputMask>
+                </span>
+
+                <p-button type="submit" label="Finalizar Pedido" icon="pi pi-check-circle"></p-button>
+            </form>
+        </p-card>
+
+        
+        <p-card  class="right">
+            <h4>Plataforma:</h4>
+            <p>{{ selectedPlatform?.nome }}</p>
+
+            <h4>Plano:</h4>
+            <p>Franquia: {{ selectedPlan?.franquia }}</p>
+            <p>Valor: R${{ selectedPlan?.valor }}</p>
+
+            <div *ngIf="selectedPlan?.aparelho" class="aparelho">
+                <h4>Aparelho:</h4>
+                <p>Modelo: {{ selectedPlan?.aparelho?.nome }}</p>
+                <p>Valor: R${{ selectedPlan?.aparelho?.valor }}</p>
+                <p> Nº de Parcelas: {{ selectedPlan?.aparelho?.numeroParcelas }}x </p>
+                <p *ngIf="selectedPlan?.aparelho?.valorParcela"> Valor da Parcela: R${{ selectedPlan?.aparelho?.valorParcela }} </p>
+            </div>
+
+        </p-card >
+
+
+    </div>
+
+</div>

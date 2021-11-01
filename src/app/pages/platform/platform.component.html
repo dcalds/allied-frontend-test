@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="top">
+        <p-card>
+            <p-steps [model]="items"></p-steps>
+            <h1>Vamos começar</h1>
+            <p>Selecione uma plataforma:</p>
+        </p-card>
+    </div>
+    <div class="bottom">
+        <p-card class="card" *ngFor="let platform of platforms" header="{{ platform.nome }}"
+            subheader="{{ platform.descricao }}">
+            <p-button (click)="selectPLatform(platform)" label="Mostrar Planos" icon="pi pi-arrow-right"
+                iconPos="right"></p-button>
+        </p-card>
+    </div>
+</div>

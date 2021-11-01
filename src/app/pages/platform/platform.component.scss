@@ -1,0 +1,31 @@
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 90rem;
+    padding: 5rem 3rem 5rem;
+    width: 100%;
+    .top {
+        color: #495057;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        margin-bottom: 2rem;
+        max-width: 1020px;
+        width: 100%;
+    }
+    .bottom {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        justify-content: center;
+        width: 100%;
+
+        .card {
+            max-width: 20rem;
+            width: 100%;
+        }
+    }
+}

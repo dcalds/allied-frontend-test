@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="top">
+        <p-card>
+            <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
+            <h1>Planos para {{ selectedPlatform?.nome }}</h1>
+            <p>Escolha o melhor plano para você:</p>
+        </p-card>
+    </div>
+    <div class="bottom">
+        <p-card class="card" *ngFor="let plan of plans" header="Franquia: {{ plan.franquia }}"
+            subheader="{{ plan.ativo ? 'Ativo' : 'Desativado' }}">
+
+            <div class="card-details" *ngIf="this.plan.aparelho?.nome">
+                <h4>Aparelho</h4>
+                <p> Nome: {{ plan.aparelho?.nome }} </p>
+                <p> Valor: R${{ plan.aparelho?.valor }} </p>
+                <p> Nº de Parcelas: {{ plan.aparelho?.numeroParcelas }}x </p>
+                <p *ngIf="plan.aparelho?.valorParcela"> Valor da Parcela: R${{ plan.aparelho?.valorParcela }} </p>
+            </div>
+
+            <ng-template pTemplate="footer">
+                <p>Valor: R$ {{ plan.valor }}</p>
+                <p-button [disabled]="!plan.ativo" (click)="selectPlan(plan)" label="Selecionar Plano" icon="pi pi-check-circle"></p-button>
+            </ng-template>
+
+        </p-card>
+    </div>
+</div>
