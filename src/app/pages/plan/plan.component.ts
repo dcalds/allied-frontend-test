@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { PlanModel } from 'src/app/interfaces/Plan';
 import { PlatformModel } from 'src/app/interfaces/Platform';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -12,6 +13,8 @@ import { StateService } from 'src/app/services/state/state.service';
 })
 export class PlanComponent implements OnInit {
 
+  items: MenuItem[] = [];
+  activeIndex: number = 1;
   plans: Array<PlanModel> = [];
   selectedPlatform?: PlatformModel;
 
@@ -23,6 +26,11 @@ export class PlanComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSelectedPlatform();
+    this.items = [
+      { label: 'Plataforma' },
+      { label: 'Plano' },
+      { label: 'Dados Pessoais' },
+    ];
   }
 
   getSelectedPlatform(): void {
