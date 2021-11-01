@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PlanModel } from 'src/app/interfaces/Plan';
+import { PlatformModel } from 'src/app/interfaces/Platform';
+import { ApiService } from 'src/app/services/api/api.service';
+import { StateService } from 'src/app/services/state/state.service';
 
 @Component({
   selector: 'app-plan',
@@ -7,9 +12,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanComponent implements OnInit {
 
-  constructor() { }
+  plans: Array<PlanModel> = [];
+  selectedPlatform?: PlatformModel;
+
+  constructor(
+    public router: Router,
+    private apiService: ApiService,
+    private stateService: StateService,
+  ) { }
 
   ngOnInit(): void {
+    this.getSelectedPlatform();
+  }
+
+  getSelectedPlatform(): void {
+    this.selectedPlatform = this.stateService.getPlatform();
+
+    // REINICIA O FLUXO EM CASO DE PERDA DO ESTADO
+    this.selectedPlatform ? this.getAllPlans(this.selectedPlatform.sku) : this.router.navigate(['/platforms']);
+  }
+
+  async getAllPlans(platformSKU: string) {
+    const response = await this.apiService.getPlans(platformSKU);
+    response.subscribe(
+      data => {
+        this.plans = data.planos;
+      },
+      err => {
+        console.log('Erro:', err);
+      }
+    )
+  }
+
+  selectPlan(plan: PlanModel): void {
+    this.stateService.setPlan(plan);
+    this.router.navigate(['/personal-form']);
   }
 
 }

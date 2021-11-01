@@ -35,8 +35,8 @@ export class PlatformComponent implements OnInit {
     )
   }
 
-  selectPLatform(platformSKU: string): void {
-    this.stateService.setPlatform(platformSKU);
+  selectPLatform(platform: PlatformModel): void {
+    this.stateService.setPlatform(platform);
     this.router.navigate(['/plans']);
   }
 

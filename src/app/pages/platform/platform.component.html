@@ -6,7 +6,7 @@
     <div class="bottom">
         <p-card class="card" *ngFor="let platform of platforms" header="{{ platform.nome }}"
             subheader="{{ platform.descricao }}">
-            <p-button (click)="selectPLatform(platform.sku)" label="Mostrar Planos" icon="pi pi-arrow-right"
+            <p-button (click)="selectPLatform(platform)" label="Mostrar Planos" icon="pi pi-arrow-right"
                 iconPos="right"></p-button>
         </p-card>
     </div>

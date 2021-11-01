@@ -10,12 +10,14 @@ import { PlatformComponent } from './pages/platform/platform.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { PlanComponent } from './pages/plan/plan.component';
+import { PersonalFormComponent } from './pages/personal-form/personal-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlatformComponent,
-    PlanComponent
+    PlanComponent,
+    PersonalFormComponent
   ],
   imports: [
     BrowserModule,

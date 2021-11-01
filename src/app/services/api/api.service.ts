@@ -17,4 +17,8 @@ export class ApiService {
   getPLatforms() {    
     return this.http.get<PlatformListModel>(`${this.SERVER_URL}/plataformas`);
   }
+
+  getPlans(platformSKU: string) {    
+    return this.http.get<PlanListModel>(`${this.SERVER_URL}/planos/${platformSKU}`);
+  }
 }
